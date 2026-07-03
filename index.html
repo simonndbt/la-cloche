@@ -135,6 +135,10 @@
  .fbtn[aria-pressed="true"]{background:var(--noir);color:var(--creme);border-color:var(--noir)}
  .diet{margin-left:6px}
  .diet[aria-pressed="true"]{background:var(--or);color:var(--noir);border-color:var(--or)}
+ .menu-meta{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px;flex-wrap:wrap}
+ .menu-meta #count{font-size:.85rem;color:var(--gris-f);font-weight:600}
+ .reset{background:none;border:none;color:var(--bordeaux);font-family:var(--db);font-weight:600;font-size:.85rem;cursor:pointer;text-decoration:underline;padding:6px}
+ .dtag.jour{background:var(--bordeaux);color:#fff}
  .dishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:26px}
  .dish{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 20px rgba(36,22,17,.06)}
  .dish[hidden]{display:none}
@@ -156,7 +160,7 @@
 
  /* SIGNATURE / carte cadeau */
  .promo{display:grid;grid-template-columns:1fr 1fr;background:var(--noir);color:var(--creme)}
- .promo-img{min-height:420px;background:linear-gradient(rgba(36,22,17,.2),rgba(36,22,17,.2)),url("images/welsh.jpg") center/cover no-repeat}
+ .promo-img{min-height:420px;background:linear-gradient(rgba(36,22,17,.2),rgba(36,22,17,.2)),url("images/cadeau.jpg") center/cover no-repeat}
  .promo-txt{padding:80px 7%}
  .promo-txt h2{font-family:var(--dt);font-weight:700;font-size:clamp(2rem,4.5vw,3rem);line-height:1;margin:12px 0 16px}
  .promo-txt h2 .or{color:var(--or)}
@@ -324,6 +328,7 @@
  </label>
  <div class="filters" role="group" aria-label="Filtres de la carte">
  <button class="fbtn" data-cat="tout" aria-pressed="true">Tout</button>
+ <button class="fbtn" data-cat="formules" aria-pressed="false">Formules</button>
  <button class="fbtn" data-cat="entrees" aria-pressed="false">Entrées</button>
  <button class="fbtn" data-cat="nord" aria-pressed="false">Spécialités du Nord</button>
  <button class="fbtn" data-cat="plats" aria-pressed="false">Plats</button>
@@ -332,9 +337,41 @@
  <button class="fbtn diet" data-diet="v" aria-pressed="false">Végétarien</button>
  <button class="fbtn diet" data-diet="g" aria-pressed="false">Sans gluten</button>
  </div>
+ <div class="menu-meta">
+ <span id="count" aria-live="polite">Toute la carte</span>
+ <button id="reset" class="reset" type="button">Réinitialiser les filtres</button>
+ </div>
  </div>
 
  <div class="dishes" id="dishes">
+
+ <article class="dish" data-cat="formules" data-v="0" data-g="0" data-search="formule midi entree plat dessert menu dejeuner">
+ <div class="dish-img"><img class="ph" src="images/boeuf.jpg" alt="Formule du midi" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>Formule du midi</h3><span class="dish-prix">18,50 €</span></div>
+ <p class="dish-desc">Entrée et plat, ou plat et dessert au choix dans la carte. Servie le midi en semaine.</p>
+ <div class="dish-tags"><span class="dtag jour">Formule</span></div></div>
+ </article>
+
+ <article class="dish" data-cat="formules" data-v="0" data-g="0" data-search="menu complet entree plat dessert formule">
+ <div class="dish-img"><img class="ph" src="images/carbonnade.jpg" alt="Menu complet" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>Menu complet</h3><span class="dish-prix">26,00 €</span></div>
+ <p class="dish-desc">Entrée, plat et dessert au choix. Pour prendre le temps, midi et soir.</p>
+ <div class="dish-tags"><span class="dtag jour">Formule</span></div></div>
+ </article>
+
+ <article class="dish" data-cat="formules" data-v="0" data-g="0" data-search="menu enfant plat dessert boisson enfants petits">
+ <div class="dish-img"><img class="ph" src="images/enfant.jpg" alt="Menu enfant" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>Menu enfant</h3><span class="dish-prix">9,50 €</span></div>
+ <p class="dish-desc">Un plat, un dessert et une boisson. Pour les plus petits, jusqu'à 10 ans.</p>
+ <div class="dish-tags"><span class="dtag">Enfant</span></div></div>
+ </article>
+
+ <article class="dish" data-cat="plats" data-v="0" data-g="1" data-search="suggestion plat du jour poisson marche ardoise chef">
+ <div class="dish-img"><img class="ph" src="images/platdujour.jpg" alt="Suggestion du jour" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>La suggestion du jour</h3><span class="dish-prix">18,00 €</span></div>
+ <p class="dish-desc">Le plat que le chef compose selon le marché. Demandez l'ardoise du jour.</p>
+ <div class="dish-tags"><span class="dtag jour">Plat du jour</span><span class="dtag g">Sans gluten</span></div></div>
+ </article>
 
  <article class="dish" data-cat="entrees" data-v="0" data-g="0" data-search="croquettes crevettes grises entree">
  <div class="dish-img"><img class="ph" src="images/croquette.jpg" alt="Croquettes de crevettes grises" loading="lazy"></div>
@@ -344,7 +381,7 @@
  </article>
 
  <article class="dish" data-cat="entrees" data-v="1" data-g="0" data-search="beignets maroilles fromage vegetarien entree">
- <div class="dish-img"><img class="ph" src="images/welsh.jpg" alt="Beignets de Maroilles" loading="lazy"></div>
+ <div class="dish-img"><img class="ph" src="images/maroilles.jpg" alt="Beignets de Maroilles" loading="lazy"></div>
  <div class="dish-body"><div class="dish-top"><h3>Beignets de Maroilles</h3><span class="dish-prix">8,50 €</span></div>
  <p class="dish-desc">Le fromage emblématique du Nord, pané et fondant, servi avec une salade.</p>
  <div class="dish-tags"><span class="dtag">Entrée</span><span class="dtag v">Végétarien</span></div></div>
@@ -420,9 +457,30 @@
  <div class="dish-tags"><span class="dtag">Boisson</span></div></div>
  </article>
 
+ <article class="dish" data-cat="boissons" data-v="1" data-g="1" data-search="vins verre rouge blanc rose boisson">
+ <div class="dish-img"><img class="ph" src="images/vin.jpg" alt="Vins au verre" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>Vins au verre</h3><span class="dish-prix">5,00 €</span></div>
+ <p class="dish-desc">Rouges, blancs et rosés choisis pour accompagner nos plats.</p>
+ <div class="dish-tags"><span class="dtag">Boisson</span></div></div>
+ </article>
+
+ <article class="dish" data-cat="boissons" data-v="1" data-g="1" data-search="cafe the softs sodas eau jus boissons chaudes fraiches">
+ <div class="dish-img"><img class="ph" src="images/cafe.jpg" alt="Cafés, thés et softs" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>Cafés, thés et softs</h3><span class="dish-prix">dès 2,50 €</span></div>
+ <p class="dish-desc">Cafés, thés, sodas, jus de fruits et eaux.</p>
+ <div class="dish-tags"><span class="dtag">Boisson</span></div></div>
+ </article>
+
+ <article class="dish" data-cat="desserts" data-v="1" data-g="0" data-search="cafe gourmand dessert mignardises vegetarien">
+ <div class="dish-img"><img class="ph" src="images/dessert.jpg" alt="Café gourmand" loading="lazy"></div>
+ <div class="dish-body"><div class="dish-top"><h3>Café gourmand</h3><span class="dish-prix">8,00 €</span></div>
+ <p class="dish-desc">Un café accompagné d'un assortiment de mini desserts maison.</p>
+ <div class="dish-tags"><span class="dtag">Dessert</span><span class="dtag v">Végétarien</span></div></div>
+ </article>
+
  </div>
  <p class="noresult" id="noresult" hidden>Aucun plat ne correspond. Essayez un autre filtre.</p>
- <p class="menu-note">Carte et prix donnés à titre indicatif, susceptibles d'évoluer selon la saison et le marché.</p>
+ <p class="menu-note">Une allergie ou un régime particulier ? Demandez nous, on vous guide. Carte et prix donnés à titre indicatif, susceptibles d'évoluer selon la saison et le marché.</p>
  </div>
  </section>
 
@@ -499,7 +557,8 @@
  <li><span class="j">Dimanche</span><span class="h closed">Fermé</span></li>
  </ul>
  <div class="cta-col">
- <a href="tel:+33320553534" class="btn btn-red" style="justify-content:center">Réserver au 03 20 55 35 34</a>
+ <a href="https://bookings.zenchef.com/" target="_blank" rel="noopener" class="btn btn-red" style="justify-content:center">Réserver en ligne</a>
+ <a href="tel:+33320553534" class="btn btn-dark" style="justify-content:center">Ou par téléphone, 03 20 55 35 34</a>
  </div>
  </div>
  <div class="panel reveal d1">
@@ -574,6 +633,7 @@
  // ===== Menu interactif : filtres + recherche =====
  const dishes=[...document.querySelectorAll('.dish')];
  const noresult=document.getElementById('noresult');
+ const count=document.getElementById('count');
  let cat='tout', vege=false, gf=false, q='';
  function norm(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()}
  function apply(){
@@ -587,6 +647,8 @@
  d.hidden = !show; if(show) shown++;
  });
  noresult.hidden = shown>0;
+ const total = dishes.length;
+ count.textContent = (shown===total) ? ('Toute la carte, '+total+' plats') : (shown+(shown>1?' plats':' plat'));
  }
  document.querySelectorAll('.fbtn[data-cat]').forEach(b=>{
  b.addEventListener('click',()=>{
@@ -604,6 +666,14 @@
  });
  });
  document.getElementById('q').addEventListener('input',e=>{q=norm(e.target.value.trim());apply()});
+ document.getElementById('reset').addEventListener('click',()=>{
+ cat='tout';vege=false;gf=false;q='';
+ document.querySelectorAll('.fbtn[data-cat]').forEach(x=>x.setAttribute('aria-pressed', x.dataset.cat==='tout'?'true':'false'));
+ document.querySelectorAll('.fbtn[data-diet]').forEach(x=>x.setAttribute('aria-pressed','false'));
+ document.getElementById('q').value='';
+ apply();
+ });
+ apply();
  </script>
 </body>
 </html>
